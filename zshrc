@@ -12,6 +12,10 @@ if [ "$SHLVL" -eq 1 ]; then
     TERM=xterm-256color
 fi
 
+# search in history based on what is type
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+
 # Definition des couleurs
 if [ -f ~/.ls_colors ]; then
     source ~/.ls_colors
