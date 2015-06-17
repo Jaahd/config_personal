@@ -30,3 +30,8 @@ man()
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+if [[ "$C_SYS" = "Darwin" ]]; then
+    # OPAM configuration
+    source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+fi

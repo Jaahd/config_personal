@@ -19,6 +19,7 @@ if [[ `uname` = "Darwin" ]]; then
 	alias libft="cp -r $LIB .; rm -rf libft/.git"
 	alias next="source nextprev next"
 	alias op=ocamlopt
+	alias ocaml="rlwrap ocaml"
 	alias prev="source nextprev prev"
 
 	# cd alias
