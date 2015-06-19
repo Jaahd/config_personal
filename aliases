@@ -9,7 +9,6 @@ alias g++f="g++ -Wall -Wextra -Werror"
 # Definition des alias
 alias clean="find . -name '*~' -execdir rm {} \;"
 alias modsh="vim $C_PATH_TO_PERSONNAL_CONFIG/zshrc"
-alias purgevim="rf -f ~/.vim/tmp/*.swp ~/.vim/tmp/.*.swp"
 alias rl="source ~/.zshrc"
 
 # School only aliases
