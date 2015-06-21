@@ -12,7 +12,7 @@ fi
 if [[ `uname` = "Darwin" ]]; then
     # add exclude file
     exclude=$HOME/.exclude
-    if [[ -f $exclude ]]; then
+    if [[ -f $exclude ]] || [[ -h $exclude ]]; then
         rm $exclude
     fi
     ln -s $PERS_PATH/exclude $HOME/.exclude
@@ -23,6 +23,9 @@ if [[ `uname` = "Darwin" ]]; then
     fi
 
     # link 42 related scripts
+    if [[ -h $PERS_PATH/scripts/backup ]]; then
+        rm $PERS_PATH/scripts/backup
+    fi
     ln -s $PERS_PATH/42_related/backup.sh $PERS_PATH/scripts/backup
 
     # link goindre to Music
