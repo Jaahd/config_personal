@@ -37,6 +37,5 @@ man()
 
 if [[ "$C_SYS" = "Darwin" ]]; then
     # OPAM configuration
-    PATH=$HOME/scripts:$PATH
     source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 fi

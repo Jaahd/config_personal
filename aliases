@@ -13,22 +13,20 @@ alias rl="source ~/.zshrc"
 
 # School only aliases
 if [[ `uname` = "Darwin" ]]; then
-	# misc
-	alias auteur="echo '$USER' > auteur"
-	alias libft="cp -r $LIB .; rm -rf libft/.git"
-	alias next="source nextprev next"
-	alias op=ocamlopt
-	alias ocaml="rlwrap ocaml"
-	alias oclean="rm -f *.cmi *.cmx *.o"
-	alias prev="source nextprev prev"
+    # misc
+    alias auteur="echo '$USER' > auteur"
+    alias libft="cp -r $LIB .; rm -rf libft/.git"
+    alias op=ocamlopt
+    alias ocaml="rlwrap ocaml"
+    alias oclean="rm -f *.cmi *.cmx *.o"
 
-	# cd alias
-	alias cdc='cd ~/Rendu'
-	alias cdl='cd $LIB'
-	alias cds='cd ~/scripts/'
-	alias goinfre='cd /nfs/sgoinfre/goinfre/'
+    # cd alias
+    alias cdc='cd ~/Rendu'
+    alias cdl='cd $LIB'
+    alias cds='cd ~/scripts/'
+    alias goinfre='cd /nfs/sgoinfre/goinfre/'
 
-	# compil alias
-	alias gccl="gcc -I $LIB/includes -L $LIB -lft"
-	alias gcclf="gcc -Wall -Wextra -Werror -I $LIB/includes -L $LIB -lft"
+    # compil alias
+    alias gccl="gcc -I $LIB/includes -L $LIB -lft"
+    alias gcclf="gcc -Wall -Wextra -Werror -I $LIB/includes -L $LIB -lft"
 fi
