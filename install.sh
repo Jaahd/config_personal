@@ -10,11 +10,22 @@ if [[ "$?" -eq 0 ]]; then
 fi
 
 if [[ `uname` = "Darwin" ]]; then
+    # add exclude file
+    exclude=$HOME/.exclude
+    if [[ -f $exclude ]]; then
+        rm $exclude
+    fi
     ln -s $PERS_PATH/exclude $HOME/.exclude
-    ln -s $PERS_PATH/42_related/backup.sh $PERS_PATH/script/backup
-    rm -rf Music
-    ln -s /nsf/sgoinfre/goinfre/Music $HOME/Music
+
+    # create personnal script if it doesn't exist
     if [[ ! -e "$PERS_PATH/scripts" ]]; then
         mkdir "$PERS_PATH/scripts"
     fi
+
+    # link 42 related scripts
+    ln -s $PERS_PATH/42_related/backup.sh $PERS_PATH/scripts/backup
+
+    # link goindre to Music
+    rm -rf Music
+    ln -s /nsf/sgoinfre/goinfre/Music $HOME/Music
 fi
