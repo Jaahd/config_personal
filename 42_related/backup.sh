@@ -8,10 +8,13 @@ unset backup_compress backup_extract backup_send backup_download \
 cd
 
 # set variables
-nosync_name="nosync"
-nosync="$HOME/$nosync_name"
-tar_name="backup.tgz"
-tarfile="$nosync/$tar_name"
+tar_list_dir="$C_PATH_TO_PERSONNAL_CONFIG/42_related/sync"
+tar_list=`ls $tar_list_dir`
+tar_dir_name=".tar_dir"
+tar_dir="$HOME/$tar_dir_name"
+if [[ ! -d $tar_dir ]]; then
+    mkdir $tar_dir
+fi
 
 function usage () {
     echo "backup <options>"
@@ -64,34 +67,67 @@ do
 done
 
 if [[ -n "$backup_compress" ]]; then
-    backup_files=`cat $HOME/.exclude | grep -v $nosync_name`
-    if [[ -f "$tarfile" ]]; then
-        rm $tarfile
-    fi
-    tar czf $tarfile "$nosync/$backup_files"
-fi
-
-if [[ -n "$backup_extract" ]]; then
-    if [[ -f "$tarfile" ]]; then
-        tar xzf $tarfile
-    fi
+    echo "== Start compressing process =="
+    for tar_name in $tar_list
+    do
+        echo -n "$tar_name"
+        tar_file=$tar_dir/$tar_name.tgz
+        tar_timestamp=`stat -f "%m" $tar_file`
+        if [[ -f $tar_file ]]; then unset ok; else ok=ok; fi
+        files_list=`cat $tar_list_dir/$tar_name`
+        for file in $files_list
+        do
+            if [[ `stat -f "%m" $file` -gt $tar_timestamp ]]; then
+                ok=ok
+            fi
+        done
+        if [[ -n "$ok" ]]; then
+            echo " new to be update"
+            rm -f $tar_file
+            tar czf $tar_file $files_list
+        else
+            echo " doesn't need to be update"
+        fi
+    done
+    echo "== End of compressing process =="
 fi
 
 if [[ -n "$backup_send" ]]; then
-    if [[ -f "$tarfile" ]]; then
-        scp $tarfile "geam-creadl.net:/home/geam/42_backup/"
-    fi
+    echo "== Send backup to server =="
+    for tar_name in $tar_list
+    do
+        tar_file=$tar_dir/$tar_name.tgz
+        if [[ -f "$tarfile" ]]; then
+            scp $tarfile "geam-creadl.net:/home/geam/42_backup/"
+        fi
+    done
+    echo "== Send done =="
 fi
 
 if [[ -n "$backup_download" ]]; then
-    if [[ -f "$tarfile" ]]; then
-        rm $tarfile
-    fi
-    scp "geam-creadl.net:/home/geam/42_backup/$tar_name" $nosync
+    echo "== Download backup from server =="
+    for tar_name in $tar_list
+    do
+        tar_file=$tar_dir/$tar_name.tgz
+        if [[ -f "$tarfile" ]]; then
+            rm $tarfile
+        fi
+        scp "geam-creadl.net:/home/geam/42_backup/$tar_name" $nosync
+    done
+    echo "== Download done =="
 fi
 
-if [[ -n "$backup_remove" ]]; then
-    if [[ -f "$tarfile" ]]; then
-        rm $tarfile
-    fi
+if [[ -n "$backup_extract" ]]; then
+    echo "== Extracting backup tar =="
+    for tar_name in $tar_list
+    do
+        echo "Extracting $tar_name"
+        if [[ -f "$tarfile" ]]; then
+            tar_file=$tar_dir/$tar_name.tgz
+            files_list=`cat $tar_list_dir/$tar_name`
+            rm -rf $backup_files
+            tar xzf $tarfile
+        fi
+    done
+    echo "== End of extracting =="
 fi
