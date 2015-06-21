@@ -14,4 +14,7 @@ if [[ `uname` = "Darwin" ]]; then
     ln -s $PERS_PATH/42_related/backup.sh $PERS_PATH/script/backup
     rm -rf Music
     ln -s /nsf/sgoinfre/goinfre/Music $HOME/Music
+    if [[ ! -e "$PERS_PATH/scripts" ]]; then
+        mkdir "$PERS_PATH/scripts"
+    fi
 fi
