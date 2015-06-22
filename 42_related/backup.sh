@@ -122,8 +122,8 @@ if [[ -n "$backup_extract" ]]; then
     for tar_name in $tar_list
     do
         echo "Extracting $tar_name"
+        tar_file=$tar_dir/$tar_name.tgz
         if [[ -f "$tarfile" ]]; then
-            tar_file=$tar_dir/$tar_name.tgz
             files_list=`cat $tar_list_dir/$tar_name`
             rm -rf $backup_files
             tar xzf $tarfile

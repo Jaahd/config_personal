@@ -15,7 +15,7 @@ if [[ `uname` = "Darwin" ]]; then
     if [[ -f $exclude ]] || [[ -h $exclude ]]; then
         rm $exclude
     fi
-    ln -s $PERS_PATH/exclude $HOME/.exclude
+    ln -s $PERS_PATH/42_related/exclude $HOME/.exclude
 
     # create personnal script if it doesn't exist
     if [[ ! -e "$PERS_PATH/scripts" ]]; then
@@ -30,5 +30,5 @@ if [[ `uname` = "Darwin" ]]; then
 
     # link goindre to Music
     rm -r "$HOME/Music"
-    ln -s /nsf/sgoinfre/goinfre/Music $HOME/Music
+    ln -s /nfs/sgoinfre/goinfre/Music $HOME/Music
 fi
