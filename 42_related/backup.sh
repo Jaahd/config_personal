@@ -72,17 +72,22 @@ if [[ -n "$backup_compress" ]]; then
     do
         echo -n "$tar_name"
         tar_file=$tar_dir/$tar_name.tgz
-        tar_timestamp=`stat -f "%m" $tar_file`
-        if [[ -f $tar_file ]]; then unset ok; else ok=ok; fi
+        if [[ -f $tar_file ]]
+        then
+            unset ok
+            tar_timestamp=`stat -f "%m" $tar_file`
+            for file in $files_list
+            do
+                if [[ `stat -f "%m" $file` -gt $tar_timestamp ]]; then
+                    ok=ok
+                fi
+            done
+        else
+            ok=ok
+        fi
         files_list=`cat $tar_list_dir/$tar_name`
-        for file in $files_list
-        do
-            if [[ `stat -f "%m" $file` -gt $tar_timestamp ]]; then
-                ok=ok
-            fi
-        done
         if [[ -n "$ok" ]]; then
-            echo " new to be update"
+            echo " need to be update"
             rm -f $tar_file
             tar czf $tar_file $files_list
         else
@@ -97,8 +102,8 @@ if [[ -n "$backup_send" ]]; then
     for tar_name in $tar_list
     do
         tar_file=$tar_dir/$tar_name.tgz
-        if [[ -f "$tarfile" ]]; then
-            scp $tarfile "geam-creadl.net:/home/geam/42_backup/"
+        if [[ -f "$tar_file" ]]; then
+            scp $tar_file "geam-creadl.net:/home/geam/42_backup/"
         fi
     done
     echo "== Send done =="
@@ -109,8 +114,8 @@ if [[ -n "$backup_download" ]]; then
     for tar_name in $tar_list
     do
         tar_file=$tar_dir/$tar_name.tgz
-        if [[ -f "$tarfile" ]]; then
-            rm $tarfile
+        if [[ -f "$tar_file" ]]; then
+            rm $tar_file
         fi
         scp "geam-creadl.net:/home/geam/42_backup/$tar_name" $nosync
     done
@@ -123,10 +128,8 @@ if [[ -n "$backup_extract" ]]; then
     do
         echo "Extracting $tar_name"
         tar_file=$tar_dir/$tar_name.tgz
-        if [[ -f "$tarfile" ]]; then
-            files_list=`cat $tar_list_dir/$tar_name`
-            rm -rf $backup_files
-            tar xzf $tarfile
+        if [[ -f "$tar_file" ]]; then
+            tar xzf $tar_file
         fi
     done
     echo "== End of extracting =="
