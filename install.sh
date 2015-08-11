@@ -31,4 +31,16 @@ if [[ `uname` = "Darwin" ]]; then
     # link goindre to Music
     rm -r "$HOME/Music"
     ln -s /nfs/sgoinfre/goinfre/Music $HOME/Music
+
+    # update brew
+    if [[ ! -e "$HOME/.brew" ]]; then
+        /usr/local/bin/brew update
+    fi
+
+    # add brew cache dir
+    if [[ ! -e "$HOME/Library/Caches/Homebrew" ]]; then
+        mkdir -p "$HOME/Library/Caches/Homebrew"
+    fi
+
+    $HOME/.brew/bin/brew install tig htop vim
 fi
