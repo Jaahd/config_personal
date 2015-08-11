@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # vim config
-rm -rf $HOME/.vimrc $HOME/.vim
-git clone git@github.com:Geam/config_vim.git $HOME/.vim
+VIMDIR=$HOME/.vim
+rm -rf $HOME/.config_vim $VIMDIR
+git clone git@github.com:Geam/config_vim.git $VIMDIR
 if [[ "$?" -eq 0 ]]; then
-    cd $HOME/.vim
+    git clone https://github.com/Geam/config_vim.git $VIMDIR
+    cd $VIMDIR
     git submodule init && git submodule update
-    mkdir $HOME/.vim/tmp
+    mkdir $VIMDIR/tmp
 fi
 
 if [[ `uname` = "Darwin" ]]; then
