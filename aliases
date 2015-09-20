@@ -11,6 +11,21 @@ alias clean="find . -name '*~' -execdir rm {} \;"
 alias modsh="vim $C_PATH_TO_PERSONNAL_CONFIG/zshrc"
 alias rl="source ~/.zshrc"
 
+# Replace ls with exa
+exa $HOME >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+    unalias ls
+    unalias ll
+    unalias la
+    unalias lah
+    unalias lh
+    alias ls=exa
+    alias ll="ls -l --group"
+    alias la="ll -a"
+    alias lg="ll --grid"
+    alias lt="ll --tree"
+fi
+
 # School only aliases
 if [[ `uname` = "Darwin" ]]; then
     # misc

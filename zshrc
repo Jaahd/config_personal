@@ -16,6 +16,10 @@ fi
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
+# ctrl + arrow in archlinux
+bindkey '^[Od' backward-word
+bindkey '^[Oc' forward-word
+
 # Definition des couleurs
 if [ -f ~/.ls_colors ]; then
     source ~/.ls_colors
