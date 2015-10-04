@@ -2,13 +2,21 @@
 
 # vim config
 VIMDIR=$HOME/.vim
+CONFIG_VIM=$HOME/.config_vim
 rm -rf $HOME/.config_vim $VIMDIR
-git clone git@github.com:Geam/config_vim.git $VIMDIR
+git clone git@github.com:Geam/config_vim.git $CONFIG_VIM
+# because some person keep using my personnal config instead of doing their own,
+# they need to use the https version of this repo
 if [[ "$?" -eq 0 ]]; then
-    git clone https://github.com/Geam/config_vim.git $VIMDIR
-    cd $VIMDIR
+    git clone https://github.com/Geam/config_vim.git $CONFIG_VIM
+    cd $CONFIG_VIM
     git submodule init && git submodule update
-    mkdir $VIMDIR/tmp
+    mkdir $CONFIG_VIM/tmp
+fi
+
+if [[ "$USER" != "geam" ]] && [[ "$USER" != "mdelage" ]]; then
+    # remove my git config if it's not me
+    sed -i.back '/git/d' $PERS_PATH/ln
 fi
 
 if [[ `uname` = "Darwin" ]]; then
