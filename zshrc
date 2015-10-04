@@ -41,9 +41,17 @@ man()
 
 if [[ "$C_SYS" = "Darwin" ]]; then
     # OPAM configuration
-    source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+    if [[ -f $HOME/.opam/opam-init/init.zsh ]]; then
+        source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+    fi
 
     if [ ! -e $HOME/nosync ]; then
         mkdir $HOME/nosync
+    fi
+
+    if [[ -f $C_PATH_TO_PERSONNAL_CONFIG/42_related/ssh_config ]]; then
+        if [[ -z `cat $HOME/.ssh/config | grep geam 2> /dev/null` ]]; then
+            cat $C_PATH_TO_PERSONNAL_CONFIG/42_related/ssh_config >> $HOME/.ssh/config
+        fi
     fi
 fi
