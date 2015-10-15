@@ -10,7 +10,7 @@ precmd ()
     else
         COLOR3="%{$fg[red]%}"
     fi
-    PROMPT="%B%{$fg[green]%}%n@%m%{$NORMAL%}%B:%{$fg[blue]%}%~%{$NORMAL%}"
+    PROMPT="%B%{$fg[green]%}%n@%m%{$NORMAL%}%b%{$fg[red]%}[$SHLVL]%{$NORMAL%}%B:%{$fg[blue]%}%~%{$NORMAL%}"
     ISGIT=$(git status --ignore-submodules 2> /dev/null)
     if [ -n "$ISGIT" ]
     then
