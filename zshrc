@@ -15,6 +15,8 @@ fi
 # search in history based on what is type
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 # ctrl + arrow in archlinux
 bindkey '^[Od' backward-word

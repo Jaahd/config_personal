@@ -2,4 +2,4 @@ gitignore_global:.gitignore_global
 gitconfig:.gitconfig
 ls_colors:.ls_colors
 ../.config_vim/vimrc:.vimrc
-../.config_vim:.vim
+../.config_vim/:.vim
