@@ -11,6 +11,8 @@ alias clean="find . -name '*~' -execdir rm {} \;"
 alias modsh="vim $C_PATH_TO_PERSONNAL_CONFIG/zshrc"
 alias rl="source ~/.zshrc"
 
+alias ta="tmux attach"
+
 # Replace ls with exa
 exa $HOME >/dev/null 2>&1
 if [[ $? == 0 ]]; then
