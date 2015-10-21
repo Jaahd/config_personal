@@ -22,7 +22,7 @@ if [[ $? == 0 ]]; then
     unalias lah
     unalias lh
     alias ls=exa
-    alias ll="ls -l --group"
+    alias ll="ls -l --group --git"
     alias la="ll -a"
     alias lg="ll --grid"
     alias lt="ll --tree"
