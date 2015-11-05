@@ -4,7 +4,19 @@ bindkey -e
 export LC_ALL=en_US.UTF-8
 
 # default editor
-EDITOR=/usr/bin/vim
+editor=`which nvim 2> /dev/null`
+if [[ "$?" -eq 0 ]]
+then
+    EDITOR=$editor
+else
+    editor=`which vim 2> /dev/null`
+    if [[ "$?" -eq 0 ]]
+    then
+        EDITOR=$editor
+    else
+        EDITOR=/usr/bin/nano
+    fi
+fi
 export EDITOR
 
 # Reglage du terminal
