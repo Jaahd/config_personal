@@ -7,9 +7,7 @@ alias gccf="gcc -Wall -Wextra -Werror"
 alias g++f="g++ -Wall -Wextra -Werror"
 
 # Definition des alias
-alias clean="find . -name '*~' -execdir rm {} \;"
-alias modsh="vim $C_PATH_TO_PERSONNAL_CONFIG/zshrc"
-alias rl="source ~/.zshrc"
+alias purgevim="rm -f $HOME/.config/nvim/tmp/*"
 
 alias ta="tmux attach"
 

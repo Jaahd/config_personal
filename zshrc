@@ -59,8 +59,13 @@ if [[ "$C_SYS" = "Darwin" ]]; then
         source $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
     fi
 
-    if [ ! -e $HOME/nosync ]; then
+    if [[ ! -e $HOME/nosync ]]; then
         mkdir $HOME/nosync
+    fi
+
+    if [[ ! -e /tmp/$USER/Caches ]]; then
+        mkdir -p /tmp/$USER/Caches
+        chmod 700 /tmp/$USER/Caches
     fi
 
     if [[ -f $C_PATH_TO_PERSONNAL_CONFIG/42_related/ssh_config ]]; then
