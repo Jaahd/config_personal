@@ -62,7 +62,7 @@ if [[ "$C_SYS" = "Darwin" ]]; then
     fi
 
     # start synchro process in background
-    (nohup $C_PATH_TO_PERSONNAL_CONFIG/scripts/42sync.sh <&- &> /dev/null &) &
+    #(nohup $C_PATH_TO_PERSONNAL_CONFIG/scripts/42sync.sh <&- &> /dev/null &) &
 
     # function to easyly stop synchronisation
     stop_synchro()
