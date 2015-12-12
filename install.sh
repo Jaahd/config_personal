@@ -15,7 +15,7 @@ else
 fi
 
 git clone "git@$VIM_DEPOT" $CONFIG_VIM
-# because some person keep using my personnal config instead of doing their own,
+# because some person keep using my personal config instead of doing their own,
 # they need to use the https version of this repo
 if [[ "$?" -ne 0 ]]; then
     git clone "https://$VIM_DEPOT" $CONFIG_VIM
@@ -29,7 +29,7 @@ if [[ "$USER" != "geam" ]] && [[ "$USER" != "mdelage" ]]; then
 fi
 
 if [[ -n $SCHOOL42 ]]; then
-    # create personnal script dir if it doesn't exist
+    # create personal script dir if it doesn't exist
     if [[ ! -e "$PERS_PATH/scripts" ]]; then
         mkdir "$PERS_PATH/scripts"
     fi
