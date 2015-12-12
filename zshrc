@@ -35,8 +35,8 @@ bindkey '^[Od' backward-word
 bindkey '^[Oc' forward-word
 
 # Definition des couleurs
-if [ -f ~/.ls_colors ]; then
-    source ~/.ls_colors
+if [ -f $C_PATH_TO_PERSONAL_CONFIG/ls_colors ]; then
+    source $C_PATH_TO_PERSONAL_CONFIG/ls_colors
 fi
 
 # Couleurs pour le man
