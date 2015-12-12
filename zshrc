@@ -53,42 +53,11 @@ man()
         man "$@"
 }
 
-if [[ "$C_SYS" = "Darwin" ]]; then
+if [[ -n $C_SCHOOL ]]; then
     # let's work in the tmp instead of home
     export OHOME=/tmp/$USER
     if [[ ! -e $OHOME ]]; then
         mkdir $OHOME
         chmod 700 $OHOME
-    fi
-
-    # start synchro process in background
-    #(nohup $C_PATH_TO_PERSONNAL_CONFIG/scripts/42sync.sh <&- &> /dev/null &) &
-
-    # function to easyly stop synchronisation
-    stop_synchro()
-    {
-        proc=` ps x | grep -v grep | grep $C_PATH_TO_PERSONNAL_CONFIG/scripts/42sync.sh`
-        if [[ -n $proc ]]; then
-            kill `echo $proc | awk '{print $1}'`
-        fi
-    }
-
-    # force the syncrho
-    force_synchro()
-    {
-        proc=` ps x | grep -v grep | grep $C_PATH_TO_PERSONNAL_CONFIG/scripts/42sync.sh`
-        if [[ -n $proc ]]; then
-            kill -30 `echo $proc | awk '{print $1}'`
-        fi
-    }
-
-    # stop synchro when exiting zsh
-    [[ -z $zshexit_functions ]] && zshexit_functions=()
-    zshexit_functions=($zshexit_functions force_synchro)
-
-    if [[ -f $C_PATH_TO_PERSONNAL_CONFIG/42_related/ssh_config ]]; then
-        if [[ -z `cat $HOME/.ssh/config | grep geam 2> /dev/null` ]]; then
-            cat $C_PATH_TO_PERSONNAL_CONFIG/42_related/ssh_config >> $HOME/.ssh/config
-        fi
     fi
 fi

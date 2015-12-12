@@ -28,20 +28,9 @@ if [[ "$USER" != "geam" ]] && [[ "$USER" != "mdelage" ]]; then
     sed -i.back '/git/d' $PERS_PATH/ln
 fi
 
-if [[ `uname` = "Darwin" ]]; then
-    # create personnal script if it doesn't exist
+if [[ -n $SCHOOL42 ]]; then
+    # create personnal script dir if it doesn't exist
     if [[ ! -e "$PERS_PATH/scripts" ]]; then
         mkdir "$PERS_PATH/scripts"
     fi
-
-    # link goindre to Music
-    rm -r "$HOME/Music"
-    ln -s /nfs/sgoinfre/goinfre/Music $HOME/Music
-
-    # cause ~/Library/Caches are always sync even if you don't want..
-    rm -rf $HOME/Library/Caches
-    mkdir -p /tmp/$USER/Caches
-    chmod 700 /tmp/$USER/Caches
-    cd $HOME/Library
-    ln -s /tmp/$USER/Caches
 fi

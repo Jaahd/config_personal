@@ -32,19 +32,15 @@ if [[ $? == 0 ]]; then
 fi
 
 # School only aliases
-if [[ `uname` = "Darwin" ]]; then
+if [[ -n $C_SCHOOL ]]; then
     # misc
     alias auteur="echo '$USER' > auteur"
     alias libft="cp -r $LIB .; rm -rf libft/.git"
-    alias op=ocamlopt
-    alias ocaml="rlwrap ocaml"
-    alias oclean="rm -f *.cmi *.cmx *.o"
 
     # cd alias
     alias cdc='cd ~/Rendu'
-    alias cdl='cd $LIB'
-    alias cds='cd ~/scripts/'
-    alias goinfre='cd /nfs/sgoinfre/goinfre/'
+    alias cdl="cd $LIB"
+    alias cds="cd ~/$C_PATH_TO_PERSONAL_CONFIG/scripts/"
 
     # compil alias
     alias gccl="gcc -I $LIB/includes -L $LIB -lft"

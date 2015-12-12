@@ -1,12 +1,2 @@
 gitignore_global:.gitignore_global
 gitconfig:.gitconfig
-ls_colors:.ls_colors
-../.config_neovim/:.config/nvim
-42_related/exclude:exclude
-/Volumes/CORSAIR/42/home/Applications:Applications
-/Volumes/CORSAIR/42/home/Documents:Documents
-/Volumes/CORSAIR/42/home/Downloads:Downloads
-/Volumes/CORSAIR/42/home/bin:bin
-/Volumes/CORSAIR/42/home/rendu:rendu
-/Volumes/CORSAIR/42/home/test:test
-/Volumes/CORSAIR/42/home/Library/Fonts:Library/Fonts
