@@ -14,7 +14,7 @@
 	excludesfile = ~/.gitignore_global
 	editor = vim
 [user]
-	name = mdelage
+	name = Marc DELAGE
 	email = mdelage@student.42.fr
 [push]
 	default = simple
