@@ -5,5 +5,5 @@ Personal config, need https://github.com/Geam/config_common to work
 cd
 git clone git@github.com:Geam/config_common.git .config_common
 cd .config_common
-./install.sh -u -b -f -p git@github.com:Geam/config_personal.git
+./install.sh -u -b -f -p git@github.com:Jaahd/config_personal.git
 ```
